@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -81,13 +82,13 @@ fun LoginScreen() {
                     .padding(17.dp, 0.dp)
             ) {
                 Text(
-                    text = "Login",
+                    text = stringResource(id = R.string.login_title),
                     fontSize = 48.sp,
                     fontWeight = FontWeight(700),
                     color = defaultColor,
                 )
                 Text(
-                    text = "Please sign in to continue.",
+                    text = stringResource(id = R.string.login_description),
                     fontSize = 16.sp,
                     fontWeight = FontWeight(400),
                     color = Color(160, 156, 156)
@@ -105,7 +106,7 @@ fun LoginScreen() {
                     onValueChange = {
                         emailState.value = it
                     },
-                    label = { Text("E-mail") },
+                    label = { Text(stringResource(id = R.string.email)) },
                     leadingIcon = {
                         Icon(
                             painter = painterResource(R.drawable.baseline_email_24),
@@ -125,7 +126,7 @@ fun LoginScreen() {
                     onValueChange = {
                         passwordState.value = it
                     },
-                    label = { Text("Password") },
+                    label = { Text(stringResource(id = R.string.password)) },
                     leadingIcon = {
                         Icon(
                             painter = painterResource(R.drawable.baseline_lock_24),
@@ -156,7 +157,7 @@ fun LoginScreen() {
                     shape = RoundedCornerShape(16.dp)
                 ) {
                     Text(
-                        text = "SIGN IN",
+                        text = stringResource(id = R.string.sign_in).uppercase(),
                         color = Color.White,
                         fontSize = 16.sp,
                         fontWeight = FontWeight(700)
@@ -171,14 +172,14 @@ fun LoginScreen() {
                 }
                 Row() {
                     Text(
-                        text = "Don’t have an account?",
+                        text = stringResource(id = R.string.dont_have_account),
                         fontSize = 12.sp,
                         color = Color(160, 156, 156),
                         modifier = Modifier.padding(top = 31.dp)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = "Sign up",
+                        text = stringResource(id = R.string.signup_title),
                         modifier = Modifier
                             .clickable { }
                             .padding(top = 31.dp),

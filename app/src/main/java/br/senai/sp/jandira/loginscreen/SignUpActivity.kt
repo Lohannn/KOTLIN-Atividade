@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -57,7 +58,9 @@ fun SignUpScreen() {
         mutableStateOf("")
     }
 
-    var checkBoxState = false
+    var checkBoxState = rememberSaveable {
+        mutableStateOf(false)
+    }
 
     Surface(
         modifier = Modifier.fillMaxSize()
@@ -90,13 +93,13 @@ fun SignUpScreen() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Sign Up",
+                    text = stringResource(id = R.string.signup_title),
                     fontSize = 32.sp,
                     fontWeight = FontWeight(700),
                     color = defaultColor,
                 )
                 Text(
-                    text = "Create a new account",
+                    text = stringResource(id = R.string.signup_description),
                     fontSize = 16.sp,
                     fontWeight = FontWeight(400),
                     color = Color(160, 156, 156)
@@ -114,7 +117,7 @@ fun SignUpScreen() {
                     onValueChange = {
                         usernameState.value = it
                     },
-                    label = { Text("Username") },
+                    label = { Text(stringResource(id = R.string.username)) },
                     leadingIcon = {
                         Icon(
                             painter = painterResource(R.drawable.baseline_person_24),
@@ -133,7 +136,7 @@ fun SignUpScreen() {
                     onValueChange = {
                         phoneState.value = it
                     },
-                    label = { Text("Phone") },
+                    label = { Text(stringResource(id = R.string.phone)) },
                     leadingIcon = {
                         Icon(
                             painter = painterResource(R.drawable.baseline_phone_android_24),
@@ -153,7 +156,7 @@ fun SignUpScreen() {
                     onValueChange = {
                         emailState.value = it
                     },
-                    label = { Text("E-mail") },
+                    label = { Text(stringResource(id = R.string.email)) },
                     leadingIcon = {
                         Icon(
                             painter = painterResource(R.drawable.baseline_email_24),
@@ -173,7 +176,7 @@ fun SignUpScreen() {
                     onValueChange = {
                         passwordState.value = it
                     },
-                    label = { Text("Password") },
+                    label = { Text(stringResource(id = R.string.password)) },
                     leadingIcon = {
                         Icon(
                             painter = painterResource(R.drawable.baseline_lock_24),
@@ -194,11 +197,12 @@ fun SignUpScreen() {
                 verticalAlignment = Alignment.CenterVertically
                     ) {
                 Checkbox(
-                    checked = checkBoxState,
-                    onCheckedChange =
+                    checked = checkBoxState.value,
+                    onCheckedChange = {checkBoxState.value},
+                    colors = CheckboxDefaults.colors(checkedColor = defaultColor)
                 )
                 Spacer(modifier = Modifier.height(11.dp))
-                Text(text = "Over 18?")
+                Text(text = stringResource(id = R.string.over_eighteen))
             }
             Column(
                 modifier = Modifier
@@ -215,7 +219,7 @@ fun SignUpScreen() {
                     shape = RoundedCornerShape(16.dp)
                 ) {
                     Text(
-                        text = "CREATE ACCOUNT",
+                        text = stringResource(id = R.string.create_account),
                         color = Color.White,
                         fontSize = 16.sp,
                         fontWeight = FontWeight(700)
@@ -223,14 +227,14 @@ fun SignUpScreen() {
                 }
                 Row() {
                     Text(
-                        text = "Already have an account?",
+                        text = stringResource(id = R.string.already_have_account),
                         fontSize = 12.sp,
                         color = Color(160, 156, 156),
                         modifier = Modifier.padding(top = 31.dp)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = "Sign in",
+                        text = stringResource(id = R.string.sign_in),
                         modifier = Modifier
                             .clickable { }
                             .padding(top = 31.dp),

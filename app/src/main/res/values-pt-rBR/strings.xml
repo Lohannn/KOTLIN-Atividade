@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Login Screen</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="login_title">Entrar</string>
+    <string name="signup_title">Cadastro</string>
+    <string name="login_description">Por favor, faça login para continuar.</string>
+    <string name="signup_description">Criar uma nova conta</string>
+    <string name="sign_in">Entrar</string>
+    <string name="create_account">CRIAR CONTA</string>
+    <string name="dont_have_account">Não tem uma conta?</string>
+    <string name="already_have_account">Já tem uma conta?</string>
+    <string name="over_eighteen">Acima de 18 anos?</string>
+    <string name="categories">Categorias</string>
+    <string name="mountain_category">Montanha</string>
+    <string name="snow_category">Neve</string>
+    <string name="beach_category">Praia</string>
+    <string name="search_destinity">Buscar seu destino</string>
+    <string name="past_trips">Viagens Anteriores</string>
+    <string name="username">Nome de Usuário</string>
+    <string name="email">E-mail</string>
+    <string name="password">Senha</string>
+    <string name="phone">Telefone</string>
+</resources>

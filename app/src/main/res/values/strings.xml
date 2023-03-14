@@ -1,4 +1,23 @@
 <resources>
     <string name="app_name">Login Screen</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="login_title">Login</string>
+    <string name="signup_title">Sign Up</string>
+    <string name="login_description">Please sign in to continue.</string>
+    <string name="signup_description">Create a new account</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">CREATE ACCOUNT</string>
+    <string name="dont_have_account">Don’t have an account?</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="over_eighteen">Over 18?</string>
+    <string name="categories">Categories</string>
+    <string name="mountain_category">Mountain</string>
+    <string name="snow_category">Snow</string>
+    <string name="beach_category">Beach</string>
+    <string name="search_destinity">Search your destinity</string>
+    <string name="past_trips">Past Trips</string>
+    <string name="username">Username</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="phone">Phone</string>
 </resources>
