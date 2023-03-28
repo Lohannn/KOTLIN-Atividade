@@ -24,6 +24,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.senai.sp.jandira.loginscreen.components.BottomShape
+import br.senai.sp.jandira.loginscreen.components.TopShape
 import br.senai.sp.jandira.loginscreen.ui.theme.LoginScreenTheme
 
 class MainActivity : ComponentActivity() {
@@ -63,17 +65,7 @@ fun LoginScreen() {
                     .height(40.dp),
                 horizontalArrangement = Arrangement.End
             ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .width(120.dp)
-                        .background(
-                            defaultColor,
-                            shape = RoundedCornerShape(
-                                bottomStart = 16.dp
-                            )
-                        )
-                )
+                TopShape()
             }
             Spacer(modifier = Modifier.height(160.dp))
             Column(
@@ -194,17 +186,7 @@ fun LoginScreen() {
                     .fillMaxSize(),
                 verticalAlignment = Alignment.Bottom
             ) {
-                Box(
-                    modifier = Modifier
-                        .height(40.dp)
-                        .width(120.dp)
-                        .background(
-                            defaultColor,
-                            shape = RoundedCornerShape(
-                                topEnd = 16.dp
-                            )
-                        )
-                )
+                BottomShape()
             }
         }
     }
