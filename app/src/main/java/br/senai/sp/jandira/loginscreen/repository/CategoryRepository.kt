@@ -1,4 +1,4 @@
-package br.senai.sp.jandira.loginscreen.dao.repository
+package br.senai.sp.jandira.loginscreen.repository
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource

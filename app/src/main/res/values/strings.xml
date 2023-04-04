@@ -20,5 +20,5 @@
     <string name="email">E-mail</string>
     <string name="password">Password</string>
     <string name="phone">Phone</string>
-    <string name="title_activity_lobby">LobbyActivity</string>
+    <string name="title_activity_lobby" translatable="false">LobbyActivity</string>
 </resources>

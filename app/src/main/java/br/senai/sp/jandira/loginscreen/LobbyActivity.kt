@@ -32,8 +32,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.senai.sp.jandira.loginscreen.dao.repository.CategoryRepository
-import br.senai.sp.jandira.loginscreen.dao.repository.TripRepository
+import br.senai.sp.jandira.loginscreen.repository.CategoryRepository
+import br.senai.sp.jandira.loginscreen.repository.TripRepository
 import br.senai.sp.jandira.loginscreen.model.Category
 import br.senai.sp.jandira.loginscreen.model.Trip
 import br.senai.sp.jandira.loginscreen.ui.theme.LoginScreenTheme
@@ -197,7 +197,7 @@ fun LobbyScreenCreator(categories: List<Category>, trips: List<Trip>) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(20.dp),
+                    .padding(16.dp),
                 horizontalAlignment = Alignment.Start
             ) {
                 Text(
