@@ -10,12 +10,15 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -30,7 +33,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.senai.sp.jandira.loginscreen.dao.repository.CategoryRepository
+import br.senai.sp.jandira.loginscreen.dao.repository.TripRepository
 import br.senai.sp.jandira.loginscreen.model.Category
+import br.senai.sp.jandira.loginscreen.model.Trip
 import br.senai.sp.jandira.loginscreen.ui.theme.LoginScreenTheme
 
 class LobbyActivity : ComponentActivity() {
@@ -45,15 +50,22 @@ class LobbyActivity : ComponentActivity() {
 }
 
 @Composable
-fun LobbyScreenCreator(categories: List<Category>) {
+fun LobbyScreenCreator(categories: List<Category>, trips: List<Trip>) {
 
     var defaultColor = colorResource(id = R.color.default_color)
+
+    var destinity = rememberSaveable {
+        mutableStateOf("")
+    }
 
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = Color(248, 248, 248, 255)),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Card(
                 modifier = Modifier
@@ -123,9 +135,10 @@ fun LobbyScreenCreator(categories: List<Category>) {
                 }
             }
             Column(modifier = Modifier.padding(16.dp)) {
-                Text(text = stringResource(id = R.string.categories),
-                modifier = Modifier.padding(bottom = 7.dp),
-                color = Color(86, 84, 84, 255)
+                Text(
+                    text = stringResource(id = R.string.categories),
+                    modifier = Modifier.padding(bottom = 7.dp),
+                    color = Color(86, 84, 84, 255)
                 )
                 LazyRow() {
                     items(categories) { category ->
@@ -154,12 +167,121 @@ fun LobbyScreenCreator(categories: List<Category>) {
                     }
                 }
             }
-            OutlinedTextField(value = "", onValueChange = {})
-        }
-        Column() {
-            Text(text = "")
-            Column() {
-
+            OutlinedTextField(modifier = Modifier
+                .width(350.dp)
+                .height(52.5.dp)
+                .border(border = BorderStroke(color = Color.Transparent, width = 0.dp)),
+                value = destinity.value,
+                onValueChange = {
+                    destinity.value = it
+                },
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.White,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent
+                ),
+                shape = RoundedCornerShape(16.dp),
+                placeholder = {
+                    Text(
+                        text = stringResource(id = R.string.search_destinity),
+                        color = Color(183, 183, 183, 255)
+                    )
+                },
+                leadingIcon = {
+                    Icon(
+                        painter = painterResource(R.drawable.baseline_search_24),
+                        contentDescription = "Search",
+                        tint = Color(183, 183, 183, 255)
+                    )
+                })
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
+                horizontalAlignment = Alignment.Start
+            ) {
+                Text(
+                    text = stringResource(id = R.string.past_trips),
+                    color = Color(86, 84, 84, 255)
+                )
+                Spacer(modifier = Modifier.height(9.dp))
+                LazyColumn(modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    content = {
+                        items(trips){trip ->
+                            Surface(
+                                modifier = Modifier
+                                    .height(208.dp)
+                                    .fillMaxWidth(),
+                                shape = RoundedCornerShape(8.dp),
+                                elevation = 3.dp
+                            ) {
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(5.dp),
+                                    verticalArrangement = Arrangement.SpaceBetween
+                                ) {
+                                    Card(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(106.dp)
+                                    ) {
+                                        trip.image?.let {
+                                            Image(
+                                                painter = it,
+                                                contentDescription = "",
+                                                contentScale = ContentScale.FillBounds
+                                            )
+                                        }
+                                    }
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.Start
+                                    ) {
+                                        Text(
+                                            text = trip.name,
+                                            color = defaultColor
+                                        )
+                                        Text(
+                                            text = ", ",
+                                            color = defaultColor
+                                        )
+                                        Text(
+                                            text = trip.year.toString(),
+                                            color = defaultColor
+                                        )
+                                    }
+                                    Text(
+                                        text = trip.description,
+                                        color = Color(160, 156, 156, 255),
+                                        fontSize = 10.sp
+                                    )
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.End
+                                    ) {
+                                        Text(
+                                            text = trip.dayOut,
+                                            color = defaultColor,
+                                            fontSize = 10.sp
+                                        )
+                                        Text(
+                                            text = " - ",
+                                            color = defaultColor,
+                                            fontSize = 10.sp
+                                        )
+                                        Text(
+                                            text = trip.dayBack,
+                                            color = defaultColor,
+                                            fontSize = 10.sp
+                                        )
+                                    }
+                                }
+                            }
+                            Spacer(modifier = Modifier.height(11.dp))
+                        }
+                    })
             }
         }
     }
@@ -168,5 +290,5 @@ fun LobbyScreenCreator(categories: List<Category>) {
 @Preview(showBackground = true)
 @Composable
 fun LobbyScreen() {
-    LobbyScreenCreator(CategoryRepository.getCategoryList())
+    LobbyScreenCreator(CategoryRepository.getCategoryList(), TripRepository.getTripList())
 }

@@ -121,7 +121,7 @@ fun SignUpScreen() {
                     )
                 }
                 Icon(
-                    painter = painterResource(id = R.drawable.baseline_photo_camera_24),
+                    painter = painterResource(id = R.drawable.adicionar_foto),
                     contentDescription = "",
                     modifier = Modifier
                         .size(28.dp)
