@@ -109,7 +109,8 @@ fun LobbyScreenCreator(categories: List<Category>, trips: List<Trip>) {
                             textAlign = TextAlign.Right
                         )
                     }
-                    Column(modifier = Modifier.width(116.dp)) {
+                    Column(modifier = Modifier.width(300.dp),
+                    horizontalAlignment = Alignment.Start) {
                         Row() {
                             Icon(
                                 painter = painterResource(id = R.drawable.baseline_location_on_24),
@@ -118,18 +119,18 @@ fun LobbyScreenCreator(categories: List<Category>, trips: List<Trip>) {
                                 tint = Color.White
                             )
                             Text(
-                                text = "You're in Paris",
+                                text = stringResource(id = R.string.you_are_in) + " Paris",
                                 color = Color.White,
                                 fontSize = 14.sp
                             )
                         }
                         Text(
-                            text = "My Trips",
+                            text = stringResource(id = R.string.my_trips),
                             color = Color.White,
                             fontSize = 24.sp,
                             fontWeight = FontWeight(700),
-                            textAlign = TextAlign.Right,
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth().
+                                    padding(start = 18.dp)
                         )
                     }
                 }

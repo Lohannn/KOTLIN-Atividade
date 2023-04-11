@@ -21,4 +21,6 @@
     <string name="email">E-mail</string>
     <string name="password">Senha</string>
     <string name="phone">Telefone</string>
+    <string name="you_are_in">Você está em </string>
+    <string name="my_trips">Minhas Viagens</string>
 </resources>

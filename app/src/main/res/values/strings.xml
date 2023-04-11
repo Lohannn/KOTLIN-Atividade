@@ -21,4 +21,6 @@
     <string name="password">Password</string>
     <string name="phone">Phone</string>
     <string name="title_activity_lobby" translatable="false">LobbyActivity</string>
+    <string name="you_are_in">You\'re in</string>
+    <string name="my_trips">My Trips</string>
 </resources>
