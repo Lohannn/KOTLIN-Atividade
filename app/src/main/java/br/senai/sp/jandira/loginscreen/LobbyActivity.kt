@@ -215,6 +215,7 @@ fun LobbyScreenCreator(categories: List<Category>, trips: List<Trip>) {
                                     .height(208.dp)
                                     .fillMaxWidth(),
                                 shape = RoundedCornerShape(8.dp),
+                                color = Color.White,
                                 elevation = 3.dp
                             ) {
                                 Column(

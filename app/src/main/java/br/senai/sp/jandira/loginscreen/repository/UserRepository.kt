@@ -16,4 +16,8 @@ class UserRepository(context: Context) {
         return db.UserDao().findUserByEmail(email)
     }
 
+    fun authenticate(email: String, password: String): User {
+        return db.UserDao().authenticate(email, password)
+    }
+
 }

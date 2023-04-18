@@ -1,11 +1,15 @@
 package br.senai.sp.jandira.loginscreen
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -33,6 +37,8 @@ import br.senai.sp.jandira.loginscreen.components.TopShape
 import br.senai.sp.jandira.loginscreen.model.User
 import br.senai.sp.jandira.loginscreen.repository.UserRepository
 import br.senai.sp.jandira.loginscreen.ui.theme.LoginScreenTheme
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 
 class SignUpActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,6 +75,22 @@ fun SignUpScreen() {
     var checkBoxState by remember {
         mutableStateOf(false)
     }
+
+    // Obter foto da galeria de imagens
+    var photoUri by remember {
+        mutableStateOf<Uri?>(null)
+    }
+
+    // Criar o objeto que abrirá a galeria e retornará a Uri da imagem selecionada
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) {
+        photoUri = it
+    }
+
+    var painter = rememberAsyncImagePainter(
+        ImageRequest.Builder(LocalContext.current).data(photoUri).build()
+    )
 
     var context = LocalContext.current
 
@@ -129,10 +151,9 @@ fun SignUpScreen() {
                             Brush.horizontalGradient(colors = listOf(defaultColor, Color.White))
                         )
                     ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.baseline_person_outline_24),
+                        Image(
+                            painter = painter,
                             contentDescription = "",
-                            tint = defaultColor
                         )
                     }
                     Icon(
@@ -140,7 +161,10 @@ fun SignUpScreen() {
                         contentDescription = "",
                         modifier = Modifier
                             .size(28.dp)
-                            .align(Alignment.BottomEnd),
+                            .align(Alignment.BottomEnd)
+                            .clickable {
+                                launcher.launch("image/*")
+                            },
                         tint = defaultColor
                     )
                 }
@@ -284,7 +308,12 @@ fun SignUpScreen() {
                         Text(
                             text = stringResource(id = R.string.sign_in),
                             modifier = Modifier
-                                .clickable { }
+                                .clickable(
+                                    onClick = {
+                                        var openSignin = Intent(context, MainActivity::class.java)
+                                        context.startActivity(openSignin)
+                                    }
+                                )
                                 .padding(top = 31.dp),
                             fontSize = 12.sp,
                             color = defaultColor,
@@ -330,6 +359,6 @@ fun userSave(
         val id = userRepository.save(newUser)
         Toast.makeText(context, "User created #$id", Toast.LENGTH_LONG).show()
     } else {
-
+        Toast.makeText(context, "This email is already being used", Toast.LENGTH_LONG).show()
     }
 }
