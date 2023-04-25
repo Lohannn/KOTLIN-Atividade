@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.painter.Painter
 
 data class Category(
 
-    val id: Int = 0,
+    val id: Long = 0,
     val name: String = "",
     val image: Painter? = null
 

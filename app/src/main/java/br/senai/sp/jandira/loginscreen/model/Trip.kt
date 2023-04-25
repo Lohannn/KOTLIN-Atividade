@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.painter.Painter
 
 data class Trip(
 
-    val id: Int = 0,
+    val id: Long = 0,
     val name: String = "",
     val image: Painter? = null,
     val year: Int = 0,
